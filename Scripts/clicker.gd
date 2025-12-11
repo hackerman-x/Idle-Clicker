@@ -11,7 +11,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("Click"):
+	pass
+
+
+func _on_clicker_image_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event.is_pressed() == true:
 		var tween = get_tree().create_tween()
 		tween.tween_property($"Clicker Image","scale", Vector2(0.8, 0.8), 0.1)
 		tween.tween_property($"Clicker Image","scale", Vector2(1, 1), 0.1)

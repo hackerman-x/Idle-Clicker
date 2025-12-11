@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://ckdwwaupk2bki" path="res://Scripts/clicker.gd" id="1_gq5ct"]
 [ext_resource type="Texture2D" uid="uid://cl6g5g18gmreq" path="res://icon.svg" id="1_qsbhg"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xhj2"]
+size = Vector2(135, 135)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_gq5ct"]
 atlas = ExtResource("1_qsbhg")
 region = Rect2(0, 0, 128, 128)
@@ -18,19 +21,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xhj2"]
-size = Vector2(126, 128)
-
 [node name="Clicker" type="Node2D"]
 script = ExtResource("1_gq5ct")
 
-[node name="Clicker Image" type="AnimatedSprite2D" parent="."]
+[node name="Clicker Image" type="Area2D" parent="."]
+
+[node name="Clicker Collision Box" type="CollisionShape2D" parent="Clicker Image"]
+scale = Vector2(0.95, 0.95)
+shape = SubResource("RectangleShape2D_6xhj2")
+debug_color = Color(0.9843137, 0, 0, 0.41960785)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Clicker Image"]
 sprite_frames = SubResource("SpriteFrames_rufjq")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Clicker Image"]
-
-[node name="Clicker Collision Box" type="CollisionShape2D" parent="Clicker Image/StaticBody2D"]
-shape = SubResource("RectangleShape2D_6xhj2")
-debug_color = Color(0.9843137, 0, 0, 0.41960785)
+[connection signal="input_event" from="Clicker Image" to="." method="_on_clicker_image_input_event"]
