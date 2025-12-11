@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4upqaos2mydb"]
+
+[ext_resource type="PackedScene" uid="uid://d2ns77suephk8" path="res://Scenes/clicker.tscn" id="1_jjgbg"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Clicker" parent="." instance=ExtResource("1_jjgbg")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
